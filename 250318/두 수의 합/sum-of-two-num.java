@@ -1,22 +1,35 @@
+import java.util.HashMap;
 import java.util.Scanner;
-import java.util.HashSet;
+
 public class Main {
+    public static int countPairsWithDuplicates(int[] arr, int K) {
+        HashMap<Integer, Integer> freqMap = new HashMap<>();
+        int count = 0;
+
+        for (int num : arr) {
+            int complement = K - num; 
+            
+            if (freqMap.containsKey(complement)) {
+                count += freqMap.get(complement);
+            }
+
+            freqMap.put(num, freqMap.getOrDefault(num, 0) + 1);
+        }
+
+        return count;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        HashSet<Integer> hs = new HashSet<>();
-        int n = sc.nextInt();
-        int k = sc.nextInt();
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
+        int N = sc.nextInt();
+        int K = sc.nextInt(); 
+        
+        int[] arr = new int[N];
+        for (int i = 0; i < N; i++) {
             arr[i] = sc.nextInt();
-            hs.add(arr[i]);
         }
-        int cnt=0;
-        for(int i=0;i<n;i++){
-            if(hs.contains(k-arr[i])){
-                cnt++;
-            }
-        }
-        System.out.print(cnt/2);
+
+        System.out.println(countPairsWithDuplicates(arr, K));
+        sc.close();
     }
 }
