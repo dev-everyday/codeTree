@@ -11,7 +11,7 @@ int main() {
     }
     int leaderCnt=0, memberCnt=0;
     cin >> leaderCnt >> memberCnt;
-    int cnt = 0;
+    long long cnt = 0;
     for(int i=0;i<n;i++){
         int num = v[i];
         if(num-leaderCnt<0){
